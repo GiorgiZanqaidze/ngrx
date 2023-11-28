@@ -1,6 +1,13 @@
-<button (click)="changeId()">add</button>
+<button (click)="addUsers()">add many users</button>
+
+<button (click)="addUser()">add user</button>
 
 <div>{{counter | async}}</div>
 
 <div>{{id | async}}</div>
+<ul>
 
+  <li *ngFor="let user of userEntities | async" (click)="removeUser(user.id)">
+    {{user.name}}
+  </li>
+</ul>

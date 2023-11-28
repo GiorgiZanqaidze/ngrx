@@ -1,7 +1,9 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { counterStore } from './counter.reducer';
+import {adapter, CounterState} from "./state/counter.state";
 
-const selectFeatureCount = createFeatureSelector<counterStore>('count');
+const { selectAll: entitiesSelectAll } = adapter.getSelectors();
+
+const selectFeatureCount = createFeatureSelector<CounterState>('count');
 
 export const selectCounter = createSelector(
     selectFeatureCount,
@@ -12,3 +14,9 @@ export const selectId = createSelector(
     selectFeatureCount,
   (state) => state.id
 );
+
+
+export const selectUserEntities = createSelector(
+  selectFeatureCount,
+  entitiesSelectAll
+)
